@@ -1,9 +1,15 @@
 import './App.css'
 
 import Text from '@shared/Text'
-import Button from './components/shared/Button'
+import Button from '@shared/Button'
+import Input from '@shared/Input'
+import TextField from '@shared/TextField'
+import Alert from '@shared/Alert'
+import { useAlertContext } from './contexts/AlertContext'
 
 function App() {
+  const { open } = useAlertContext()
+
   return (
     <div>
       <Text typography="t1" display="block" color="red">
@@ -30,6 +36,32 @@ function App() {
       <Button full={true}>클릭해주세요</Button>
       <Button full={true} disabled={true}>
         클릭해주세요
+      </Button>
+
+      <div style={{ height: 10, width: '100%', background: '#efefef' }} />
+
+      <Input placeholder="로그인" aria-invalid={false} />
+      <Input aria-invalid={true} />
+
+      <TextField label="아이디" />
+      <TextField label="패스워드" hasError={true} />
+
+      <div style={{ height: 10, width: '100%', background: '#efefef' }} />
+
+      {/* <Alert open={true} title="알럿이 떴습니다." onButtonClick={() => {}} /> */}
+
+      <Button
+        onClick={() => {
+          open({
+            title: '카드신청완료',
+            description: '내역페이지에서 확인해주세요',
+            onButtonClick: () => {
+              //
+            },
+          })
+        }}
+      >
+        Alert 오픈
       </Button>
     </div>
   )
