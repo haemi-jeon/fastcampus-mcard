@@ -1,13 +1,14 @@
 import { css } from '@emotion/react'
+
 import Flex from './Flex'
 import Text from './Text'
 
-interface TopPops {
+interface TopProps {
   title: string
   subTitle: string
 }
 
-function Top({ title, subTitle }: TopPops) {
+function Top({ title, subTitle }: TopProps) {
   return (
     <Flex direction="column" css={containerStyles}>
       <Text bold={true} typography="t4">
