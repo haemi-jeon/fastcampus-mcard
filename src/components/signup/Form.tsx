@@ -34,7 +34,7 @@ function Form({ onSubmit }: { onSubmit: (FormValues: FormValues) => void }) {
 
   const errors = useMemo(() => validate(formValues), [formValues])
 
-  const 제출할수있는가 = Object.keys(errors).length === 0
+  const 제출가능한가 = Object.keys(errors).length === 0
 
   return (
     <Flex direction="column" css={formContainerStyles}>
@@ -84,7 +84,7 @@ function Form({ onSubmit }: { onSubmit: (FormValues: FormValues) => void }) {
 
       <FixedBottomButton
         label="회원가입"
-        disabled={제출할수있는가 === false}
+        disabled={제출가능한가 === false}
         onClick={() => {
           onSubmit(formValues)
         }}
