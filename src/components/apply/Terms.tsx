@@ -1,10 +1,11 @@
 import { useCallback, useState, MouseEvent } from 'react'
 
 import { 약관목록 } from '@/constants/apply'
+import { ApplyValues } from '@/models/apply'
 import Agreement from '@shared/Agreement'
-import FixedBottomButton from '../shared/FixedBottomButton'
+import FixedBottomButton from '@shared/FixedBottomButton'
 
-function Terms({ onNext }: { onNext: (terms: string[]) => void }) {
+function Terms({ onNext }: { onNext: (terms: ApplyValues['terms']) => void }) {
   const [termsAgreements, setTermsAgreements] = useState(() => {
     return 약관목록.reduce<Record<string, boolean>>(
       (prev, term) => ({
@@ -15,14 +16,14 @@ function Terms({ onNext }: { onNext: (terms: string[]) => void }) {
     )
   })
 
-  const 모든약관동의되었는가 = Object.values(termsAgreements).every(
-    (동의여부) => 동의여부,
+  console.log('termsAgreements', termsAgreements)
+
+  const 전체약관동의여부 = Object.values(termsAgreements).every(
+    (agreed) => agreed,
   )
 
   const handleAllAgreement = useCallback(
     (_: MouseEvent<HTMLElement>, checked: boolean) => {
-      console.log(checked)
-
       setTermsAgreements((prevTerms) => {
         return Object.keys(prevTerms).reduce(
           (prev, key) => ({
@@ -40,7 +41,7 @@ function Terms({ onNext }: { onNext: (terms: string[]) => void }) {
     <div>
       <Agreement>
         <Agreement.Title
-          checked={모든약관동의되었는가}
+          checked={전체약관동의여부}
           onChange={handleAllAgreement}
         >
           약관에 모두 동의
@@ -64,7 +65,7 @@ function Terms({ onNext }: { onNext: (terms: string[]) => void }) {
 
       <FixedBottomButton
         label="약관동의"
-        disabled={모든약관동의되었는가 === false}
+        disabled={전체약관동의여부 === false}
         onClick={() => {
           onNext(Object.keys(termsAgreements))
         }}
