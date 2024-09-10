@@ -16,8 +16,6 @@ function Terms({ onNext }: { onNext: (terms: ApplyValues['terms']) => void }) {
     )
   })
 
-  console.log('termsAgreements', termsAgreements)
-
   const 전체약관동의여부 = Object.values(termsAgreements).every(
     (agreed) => agreed,
   )
