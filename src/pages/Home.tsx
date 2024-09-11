@@ -13,9 +13,7 @@ function HomePage() {
         title="혜택 좋은 카드"
         subTitle="회원님을 위해서 혜택 좋은 카드를 모아봤습니다"
       />
-      <Button>하이</Button>
       <AdBanners />
-      <Button>하이</Button>
       <Suspense
         fallback={[...new Array(10)].map((_, idx) => (
           <ListRow.Skeleton key={idx} />
@@ -23,7 +21,6 @@ function HomePage() {
       >
         <CardList />
       </Suspense>
-      <Button>하이</Button>
     </div>
   )
 }
